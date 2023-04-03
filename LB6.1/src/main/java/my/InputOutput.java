@@ -1,5 +1,6 @@
 package my;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class InputOutput {
@@ -25,5 +26,22 @@ public class InputOutput {
     }
 
     public void printFilterNumberMedCart(Patient[] patients) {
+        Scanner c = new Scanner(System.in);
+        System.out.println("Введіть початок інтервалу");
+        int numLow = c.nextInt();
+        System.out.println("Введіть кінець інтервалу");
+        int numUp = c.nextInt();
+        printPatient(logic.filterNumberMedCart(patients,numLow, numUp));
+    }
+    public void printFilterPhone(Patient[] patients){
+        Scanner s = new Scanner(System.in);
+        System.out.println("Введіть початкову цифру номеру телефону");
+        int f = s.nextInt();
+        printPatient(logic.filterPhone(patients, f));
+    }
+
+    public void printDiagnosis(Patient[] patients) {
+        System.out.println(Arrays.toString(logic.filterDiagnosis(patients)));
+        System.out.println(Arrays.toString(logic.number(patients)));
     }
 }

@@ -33,7 +33,6 @@ public class Main {
                 System.out.println("0: Вийти з програми");
                 Scanner sc = new Scanner(System.in);
                 int k = sc.nextInt();
-                boolean r = false;
                 int q;
                 String file ;
                 switch (k){
@@ -71,15 +70,20 @@ public class Main {
                         printAll.printFilterDiagnosis(this.patients);
                         break;
                     case 4:
-                        System.out.println("Введіть початок інтервалу");
-                        int numberLow = sc.nextInt();
-                        System.out.println("Введіть кінець інтервалу");
-                        int numberUp = sc.nextInt();
-                        this.patients = logic.readFromFile("patients.txt");
-                        logic.filterNumberMedCart(this.patients, numberLow, numberUp);
-                        printAll.printFilterNumberMedCart(this.patients);
+                        System.out.println("Введіть назву файлу");
+                        file = sc.next();
+                        patients = logic.readFromFile(file);
+                        printAll.printFilterNumberMedCart(patients);
                     case  5:
-
+                        System.out.println("Введіть назву файлу");
+                        file = sc.next();
+                        patients = logic.readFromFile(file);
+                        printAll.printFilterPhone(patients);
+                    case 6:
+                        System.out.println("Введіть назву файлу");
+                        file = sc.next();
+                        patients = logic.readFromFile(file);
+                        printAll.printDiagnosis(patients);
             }   }
         }
     }

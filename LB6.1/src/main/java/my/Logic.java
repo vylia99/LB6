@@ -123,14 +123,14 @@ public class Logic {
         }
         temp = Arrays.copyOf(temp, p);
 
-
-        return (Patient[])Arrays.sort(temp, new Comparator<Patient>(){
+        Arrays.sort(temp, new Comparator<Patient>(){
             @Override
             public int compare(Patient p1, Patient p2){
                 int compare = Integer.compare(p1.getNumberMedCart(), p2.getNumberMedCart());
                 return compare;
             }
         });
+        return temp;
     }
 
 
@@ -167,6 +167,42 @@ public class Logic {
 
         return (Patient[])Arrays.copyOf(temp, p);
     }
+    public String[] filterDiagnosis(Patient[] patients){ //список діагнозів пацієнтів із вказанням кількості пацієнтів
+        String[] diagnosis = new String[patients.length];
+       boolean d=false;
+        int j=0;
+        for(int i = 0; i< patients.length; ++i) {
+            String diagnoz = patients[i].getDiagnoz();
+
+            for(int p = 0; p< j; ++p){
+                if(diagnosis[p].equals(diagnoz)){
+                    d=true;
+                break;}
+            }
+            if(!d)
+                diagnosis[j++] = diagnoz;
+        }
+
+        return Arrays.copyOf(diagnosis,j);
+    }
+        public int [] number(Patient[] patients){
+
+            String[] noRepeatDiagnisis = filterDiagnosis(patients);
+            int[] num= new int[noRepeatDiagnisis.length];
+            for (int i = 0; i<noRepeatDiagnisis.length; i++) {
+            num[i]=0;
+
+                String temp = noRepeatDiagnisis[i];
+                for (int p=0; p<patients.length; p++){
+                  if (patients[p].getDiagnoz().equals(temp)){
+                      num[i]+=1;
+                  }
+                }
+            }
+            return num;
+        }
+
+
     public Patient scannerPatient(){
         Scanner s = new Scanner(System.in);
         System.out.println("Введіть id");
