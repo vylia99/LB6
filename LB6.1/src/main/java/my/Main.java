@@ -66,7 +66,6 @@ public class Main {
                         System.out.println("Введіть назву файлу");
                         file = sc.next();
                         this.patients = logic.readFromFile(file);
-                        printAll.printPatient(patients);
                         printAll.printFilterDiagnosis(this.patients);
                         break;
                     case 4:
